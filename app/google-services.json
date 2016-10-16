@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "214047367889",
+    "project_id": "firebase-keepit"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214047367889:android:29324815d82c18d3",
+        "android_client_info": {
+          "package_name": "com.rockinghorse.keepit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214047367889-3tvgq85eci513oics8u7ievqqnstb6ng.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rockinghorse.keepit",
+            "certificate_hash": "2184BB6BA166D108537E3131A6D5688BFE3F2669"
+          }
+        },
+        {
+          "client_id": "214047367889-fmqa32fupfn893e424cjggkkqkv3sejk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkeBguy5LVlcnsR8UDNS73YP1JsPU6Trw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
