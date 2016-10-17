@@ -54,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String msg = presenter.newTaskButtonClicked();
-                Snackbar.make(view, msg, Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Create a Task Action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

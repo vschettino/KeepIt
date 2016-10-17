@@ -16,21 +16,29 @@
         <activity
             android:name=".views.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".views.LoginActivity"
-            android:label="@string/title_activity_login">
-
+            android:label="@string/project_title">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="android.intent.action.MAIN" />
 
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
-
+        <activity
+            android:name=".views.ProjectListActivity"
+            android:label="@string/title_project_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".views.ProjectDetailActivity"
+            android:label="@string/title_project_detail"
+            android:parentActivityName=".views.ProjectListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.rockinghorse.keepit.views.ProjectListActivity" />
+        </activity>
     </application>
 
 </manifest>
