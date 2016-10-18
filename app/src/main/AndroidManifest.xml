@@ -31,7 +31,7 @@
             android:label="@string/title_project_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".views.ProjectDetailActivity"
+            android:name=".views.TaskDetailActivity"
             android:label="@string/title_project_detail"
             android:parentActivityName=".views.ProjectListActivity"
             android:theme="@style/AppTheme.NoActionBar">

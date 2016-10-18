@@ -3,10 +3,10 @@
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/project_list"
-    android:name="com.rockinghorse.keepit.views.ProjectListFragment"
+    android:id="@+id/task_list"
+    android:name="com.rockinghorse.keepit.views.TasksFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="vertical"
     app:layoutManager="LinearLayoutManager"
-    tools:context="com.rockinghorse.keepit.views.ProjectListActivity" />
+    tools:context="com.rockinghorse.keepit.views.MainActivity" />

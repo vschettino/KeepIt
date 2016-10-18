@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.rockinghorse.keepit.R;
 
 import com.rockinghorse.keepit.models.Project;
-import com.rockinghorse.keepit.views.dummy.DummyContent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,15 +83,14 @@ public class ProjectListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(new Integer(position + 1).toString() + ". ");
-            holder.mContentView.setText(mValues.get(position).getTitle().toUpperCase());
+            holder.mContentView.setText(mValues.get(position).getLabel(position).toUpperCase());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        ProjectDetailFragment fragment = new ProjectDetailFragment();
+                        TaskDetailFragment fragment = new TaskDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.project_detail_container, fragment)
@@ -115,13 +113,11 @@ public class ProjectListActivity extends AppCompatActivity {
         public class ViewHolder extends RecyclerView.ViewHolder {
             public final View mView;
             public final TextView mContentView;
-            public final TextView mIdView;
             public Project mItem;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
-                mIdView = (TextView) view.findViewById(R.id.id);
                 mContentView = (TextView) view.findViewById(R.id.content);
             }
 

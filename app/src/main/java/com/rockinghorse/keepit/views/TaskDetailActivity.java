@@ -18,20 +18,19 @@ import com.rockinghorse.keepit.R;
  * item details are presented side-by-side with a list of items
  * in a {@link ProjectListActivity}.
  */
-public class ProjectDetailActivity extends AppCompatActivity {
+public class TaskDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_project_detail);
+        setContentView(R.layout.activity_task_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Delete Task Action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -55,9 +54,9 @@ public class ProjectDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(ProjectDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(ProjectDetailFragment.ARG_ITEM_ID));
-            ProjectDetailFragment fragment = new ProjectDetailFragment();
+            arguments.putString(TaskDetailFragment.ARG_ITEM_ID,
+                    getIntent().getStringExtra(TaskDetailFragment.ARG_ITEM_ID));
+            TaskDetailFragment fragment = new TaskDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.project_detail_container, fragment)

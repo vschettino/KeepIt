@@ -17,4 +17,8 @@ public class Project {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public String getLabel(int position) {
+        return "#" + (new Integer(position + 1).toString()) + " " + this.title;
+    }
 }
