@@ -16,7 +16,7 @@
         <activity
             android:name=".views.MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.LoginActivity"
             android:label="@string/project_title">
@@ -29,7 +29,7 @@
         <activity
             android:name=".views.ProjectListActivity"
             android:label="@string/title_project_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".views.TaskDetailActivity"
             android:label="@string/title_project_detail"
@@ -39,6 +39,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.rockinghorse.keepit.views.ProjectListActivity" />
         </activity>
+        <activity
+            android:name=".views.ProjectCreateActivity"
+            android:label="@string/title_activity_project_create"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

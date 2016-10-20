@@ -74,7 +74,9 @@ public class TaskDetailActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, ProjectListActivity.class));
+            // navigateUpTo(new Intent(this, ProjectListActivity.class));
+            // Changed to back to previous screen
+            onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);

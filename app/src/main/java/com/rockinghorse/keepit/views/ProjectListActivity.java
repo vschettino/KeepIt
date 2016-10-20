@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
@@ -43,8 +44,10 @@ public class ProjectListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Create a Project Action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            Context context = view.getContext();
+            Intent intent = new Intent(context, ProjectCreateActivity.class);
+
+            context.startActivity(intent);
             }
         });
 
@@ -77,6 +80,9 @@ public class ProjectListActivity extends AppCompatActivity {
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.project_list_content, parent, false);
+
+            View card = findViewById(R.id.card_view);
+
             return new ViewHolder(view);
         }
 
