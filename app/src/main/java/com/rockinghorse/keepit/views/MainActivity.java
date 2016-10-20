@@ -1,5 +1,7 @@
 package com.rockinghorse.keepit.views;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -57,8 +59,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Create a Task Action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Context context = view.getContext();
+                Intent intent = new Intent(context, TaskCreateActivity.class);
+
+                context.startActivity(intent);
             }
         });
     }

@@ -42,6 +42,10 @@
         <activity
             android:name=".views.ProjectCreateActivity"
             android:label="@string/title_activity_project_create"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".views.TaskCreateActivity"
+            android:label="@string/title_activity_create_task"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
