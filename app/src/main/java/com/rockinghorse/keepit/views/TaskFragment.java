@@ -105,6 +105,7 @@ public class TaskFragment extends Fragment {
             holder.mContentView.setTextColor(Color.parseColor(mValues.get(position).getColorLabel()));
             holder.mActionMessageView.setText(mValues.get(position).getActionLabel());
 
+
             holder.mContentView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
