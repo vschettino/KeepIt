@@ -19,4 +19,8 @@
     <string name="project_title">KeepIt</string>
     <string name="title_activity_project_create">ProjectCreateActivity</string>
     <string name="title_activity_create_task">CreateTaskActivity</string>
+    <string name="label_aditional_info">Aditional Info</string>
+    <string name="label_due_date">Due Date (tap to change)</string>
+    <string name="label_task_name">Task Name</string>
+    <string name="choose_the_color">Choose the color (tap to change)</string>
 </resources>

@@ -2,7 +2,9 @@ package com.rockinghorse.keepit.views;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -75,8 +77,8 @@ public class TaskFragment extends Fragment {
                 ts = new ToDoStatus();
 
         }
-        ps.add(new Task("A " + ts.getLabel() + " task ", ts));
-        ps.add(new Task("Another " + ts.getLabel() + " task ", ts));
+        ps.add(new Task("A " + ts.getLabel() + " task ", ts, 0x2196f3));
+        ps.add(new Task("Another " + ts.getLabel() + " task ", ts, 0xff5722));
         recyclerView.setAdapter(new TaskFragment.SimpleItemRecyclerViewAdapter(ps));
     }
 
@@ -100,6 +102,7 @@ public class TaskFragment extends Fragment {
         public void onBindViewHolder(final TaskFragment.SimpleItemRecyclerViewAdapter.ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
             holder.mContentView.setText(mValues.get(position).getLabel());
+            holder.mContentView.setTextColor(Color.parseColor(mValues.get(position).getColorLabel()));
             holder.mActionMessageView.setText(mValues.get(position).getActionLabel());
 
             holder.mContentView.setOnClickListener(new View.OnClickListener() {

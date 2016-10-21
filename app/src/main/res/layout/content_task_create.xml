@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -13,47 +15,80 @@
     tools:context="com.rockinghorse.keepit.views.TaskCreateActivity"
     tools:showIn="@layout/activity_task_create">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/txtTask"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Task Name" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edtTask"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/txtDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Due Date" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
-        <EditText
-            android:id="@+id/edtDate"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="date" />
+            <TextView
+                android:id="@+id/label_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_task_name" />
 
-        <TextView
-            android:id="@+id/txtDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Description" />
+            <EditText
+                android:id="@+id/edtTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <EditText
-            android:id="@+id/edtDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:ems="10"
-            />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/label_due_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/label_due_date" />
+
+            <TextView
+                android:id="@+id/_due_date"
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:onClick="showDateDialog"
+                android:text="22/10/2016" />
+
+
+            <TextView
+                android:id="@+id/select_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="showColorDialog"
+                android:text="@string/choose_the_color" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:onClick="showColorDialog"
+                app:srcCompat="@drawable/color_picker_circle" />
+
+            <TextView
+                android:id="@+id/label_aditional_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/label_aditional_info" />
+
+
+            <EditText
+                android:id="@+id/edtAditionalInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
 </RelativeLayout>
