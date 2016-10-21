@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"-->
 
-<!--android:divider="?android:attr/listDivider"--><!--android:orientation="vertical">-->
-
-<!--&lt;!&ndash;<TextView&ndash;&gt;--><!--&lt;!&ndash;android:id="@+id/id"&ndash;&gt;--><!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;--><!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;--><!--&lt;!&ndash;android:layout_margin="@dimen/text_margin"&ndash;&gt;--><!--&lt;!&ndash;android:textAppearance="?attr/textAppearanceListItem"&ndash;&gt;--><!--&lt;!&ndash;android:textColor="@color/common_google_signin_btn_text_light_default" />&ndash;&gt;-->
-
-<!--&lt;!&ndash;<TextView&ndash;&gt;--><!--&lt;!&ndash;android:id="@+id/content"&ndash;&gt;--><!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;--><!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;--><!--&lt;!&ndash;android:layout_margin="@dimen/text_margin"&ndash;&gt;--><!--&lt;!&ndash;android:textAppearance="?attr/textAppearanceListItem"&ndash;&gt;--><!--&lt;!&ndash;android:textColor="@color/common_google_signin_btn_text_light_default" />&ndash;&gt;--><!--<TextView--><!--android:id="@+id/content"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:text="Title"/>-->
-
-<!--<TextView--><!--android:id="@+id/id"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:text="Subtitle"/>--><!--</LinearLayout>-->
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -30,19 +23,39 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-            <TextView
-                android:id="@+id/content"
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:divider="?android:attr/listDivider"
-                android:text="Title"
-                android:layout_marginBottom="15dp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:divider="?android:attr/listDivider"
+                    android:text="Title" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:gravity="end"
+                    android:textAlignment="viewEnd"
+                    app:srcCompat="@drawable/ic_action_archive" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                android:background="@android:color/darker_gray" />
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
