@@ -23,4 +23,5 @@
     <string name="label_due_date">Due Date (tap to change)</string>
     <string name="label_task_name">Task Name</string>
     <string name="choose_the_color">Choose the color (tap to change)</string>
+    <string name="server_auth_id">214047367889-2dhd358jjm7l3kgsigu50ls06nsmm0om.apps.googleusercontent.com</string>
 </resources>

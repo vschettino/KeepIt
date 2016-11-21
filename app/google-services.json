@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "214047367889",
-    "project_id": "firebase-keepit"
+    "firebase_url": "https://fir-keepit.firebaseio.com",
+    "project_id": "firebase-keepit",
+    "storage_bucket": "firebase-keepit.appspot.com"
   },
   "client": [
     {
@@ -13,12 +15,24 @@
       },
       "oauth_client": [
         {
+          "client_id": "214047367889-a7368c0m8mksjgrpefgfg437daci8atg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rockinghorse.keepit",
+            "certificate_hash": "D99FE5D6F85295FDAF4FDB4E0B0542C5E987089E"
+          }
+        },
+        {
           "client_id": "214047367889-3tvgq85eci513oics8u7ievqqnstb6ng.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.rockinghorse.keepit",
             "certificate_hash": "2184BB6BA166D108537E3131A6D5688BFE3F2669"
           }
+        },
+        {
+          "client_id": "214047367889-2dhd358jjm7l3kgsigu50ls06nsmm0om.apps.googleusercontent.com",
+          "client_type": 3
         },
         {
           "client_id": "214047367889-fmqa32fupfn893e424cjggkkqkv3sejk.apps.googleusercontent.com",
@@ -35,11 +49,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214047367889-2dhd358jjm7l3kgsigu50ls06nsmm0om.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }
