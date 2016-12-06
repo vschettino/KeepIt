@@ -8,8 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.rockinghorse.keepit.R;
+import com.rockinghorse.keepit.models.Project;
 
 public class ProjectCreateActivity extends AppCompatActivity {
 
@@ -19,7 +24,7 @@ public class ProjectCreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_project_create);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle("Add New project");
         }
@@ -27,15 +32,31 @@ public class ProjectCreateActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Save Project Action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                EditText vProjectTitle = (EditText) findViewById(R.id.edtProject);
+                handleNewProject(vProjectTitle.getText().toString());
+                finish();
+
             }
         });
     }
 
+    public void handleNewProject(String title) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("projects");
+        String key = ref.push().getKey();
+        Project p = new Project(
+                key,
+                title,
+                true,
+                getIntent().getExtras().getString(LoginActivity.RC_ACCOUNT_ID)
+        );
+        ref.child(key).setValue(p);
+
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
         }
