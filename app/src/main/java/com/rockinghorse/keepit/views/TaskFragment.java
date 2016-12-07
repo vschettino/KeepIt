@@ -44,6 +44,7 @@ public class TaskFragment extends Fragment {
     public static final String ARG_TASK_TITLE = "task_title";
     private RecyclerView recyclerView;
     private ArrayList<Task> mTasks = new ArrayList<>();
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     public TaskFragment() {
     }
@@ -79,7 +80,6 @@ public class TaskFragment extends Fragment {
     }
 
     private void fetchProjects() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("tasks");
         ref.orderByChild("project_id").equalTo(getArguments().getString(ProjectListActivity.ARG_PROJECT_ID)).addValueEventListener(new ValueEventListener() {
             @Override
@@ -143,9 +143,13 @@ public class TaskFragment extends Fragment {
             holder.mActionMessageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    Snackbar.make(v, "Move a Task Action", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                    try {
+                        handleStatusChange(holder.mItem);
+                    } catch (NoSuchMethodException e) {
+                        Snackbar.make(v, "You are not allowed to move this task to this lane.", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        e.printStackTrace();
+                    }
                 }
             });
         }
@@ -173,6 +177,14 @@ public class TaskFragment extends Fragment {
                 return super.toString() + " '" + mContentView.getText() + "'";
             }
         }
+    }
+
+    private void handleStatusChange(Task t) throws NoSuchMethodException {
+        t.gotoDefaultNextStatus();
+        Log.d("firebase", "go to " + t.getStatus().getLabel());
+
+        DatabaseReference ref = database.getReference("tasks/\"" + t.getId() + "\"");
+        ref.child("statusString").setValue(t.getStatusString());
     }
 }
 

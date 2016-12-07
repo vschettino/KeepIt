@@ -25,6 +25,12 @@ public class DoingStatus implements TaskStatus {
         return new DoneStatus();
     }
 
+
+    @Override
+    public TaskStatus gotoDefaultNextStatus() throws NoSuchMethodException {
+        return gotoDone();
+    }
+
     @Override
     public TaskStatus getInstance() {
         return new DoingStatus();

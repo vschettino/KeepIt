@@ -1,7 +1,11 @@
 package com.rockinghorse.keepit.models;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Task {
+    public String id;
     public String title;
     private TaskStatus status;
     private String statusString;
@@ -95,5 +99,45 @@ public class Task {
     public void setStatusString(String statusString) {
         this.status = TaskStatusFactory.getInstance().newStatus(statusString);
         this.statusString = statusString;
+    }
+
+    public String getId() {
+        return this.id;
+    }
+
+    public String getActionText() {
+        return this.getStatus().getActionText();
+    }
+
+    public void gotoDoing() throws NoSuchMethodException {
+        this.status = this.getStatus().gotoDoing();
+        this.statusString = this.getStatus().getLabel();
+    }
+
+    public void gotoToDo() throws NoSuchMethodException {
+        this.status = this.getStatus().gotoToDo();
+        this.statusString = this.getStatus().getLabel();
+
+    }
+
+    public void gotoDone() throws NoSuchMethodException {
+        this.status = this.getStatus().gotoDone();
+        this.statusString = this.getStatus().getLabel();
+
+    }
+
+    public void gotoDefaultNextStatus() throws NoSuchMethodException {
+        this.status = this.getStatus().gotoDefaultNextStatus();
+        this.statusString = this.getStatus().getLabel();
+    }
+
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("id", getId());
+        result.put("title", getTitle());
+        result.put("statusString", getStatusString());
+        result.put("color", getColor());
+        result.put("project_id", getProject_id());
+        return result;
     }
 }

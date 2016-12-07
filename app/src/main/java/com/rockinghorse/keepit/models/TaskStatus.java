@@ -14,6 +14,8 @@ public interface TaskStatus {
 
     public TaskStatus gotoDone() throws NoSuchMethodException;
 
+    public TaskStatus gotoDefaultNextStatus() throws NoSuchMethodException;
+
     public TaskStatus getInstance();
 
     public String getLabel();
