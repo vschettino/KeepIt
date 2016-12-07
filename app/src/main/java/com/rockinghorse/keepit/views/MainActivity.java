@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String TODO_FRAGMENT_NAME = "TO DO";
     public static final String DOING_FRAGMENT_NAME = "DOING";
     public static final String DONE_FRAGMENT_NAME = "DONE";
+    public String projectId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         if(getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
+        projectId = getIntent().getExtras().getString(ProjectListActivity.ARG_PROJECT_ID);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mSectionsPagerAdapter);
         tabLayout.setupWithViewPager(mViewPager);
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Context context = view.getContext();
                 Intent intent = new Intent(context, TaskCreateActivity.class);
-
                 context.startActivity(intent);
             }
         });
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return TaskFragment.newInstance(position, getPageTitle(position));
+            return TaskFragment.newInstance(position, getPageTitle(position), projectId);
         }
 
         @Override

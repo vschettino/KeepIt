@@ -41,6 +41,7 @@ import java.util.Map;
 
 public class ProjectListActivity extends AppCompatActivity {
 
+    public static final String ARG_PROJECT_ID = "ARG_PROJECT_ID";
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
@@ -82,13 +83,13 @@ public class ProjectListActivity extends AppCompatActivity {
             mTwoPane = true;
         }
 
-        fetechProjects();
+        fetchProjects();
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    private void fetechProjects() {
+    private void fetchProjects() {
         // Get a reference to our posts
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("projects");
@@ -196,8 +197,9 @@ public class ProjectListActivity extends AppCompatActivity {
                                 .commit();
                     } else {
                         Context context = v.getContext();
-                        Intent intent = new Intent(context, MainActivity.class);
 
+                        Intent intent = new Intent(context, MainActivity.class);
+                        intent.putExtra(ARG_PROJECT_ID, holder.mItem.getId());
                         context.startActivity(intent);
                     }
                 }

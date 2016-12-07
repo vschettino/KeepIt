@@ -2,16 +2,47 @@ package com.rockinghorse.keepit.models;
 
 
 public class Task {
-    private String title;
+    public String title;
     private TaskStatus status;
-    private int color;
-    private int defaultColor = new Integer(0x2196f3);
+    private String statusString;
+    public int color;
+    public String project_id;
+    public int defaultColor = Integer.valueOf(0x2196f3);
+
+    public int getDefaultColor() {
+        return defaultColor;
+    }
+
+    public void setDefaultColor(int defaultColor) {
+        this.defaultColor = defaultColor;
+    }
+
+    public TaskStatus getStatus() {
+        if (status == null)
+            this.status = TaskStatusFactory.getInstance().newStatus(statusString);
+        return status;
+    }
+
+    public void setStatus(TaskStatus status) {
+//        this.status = status;
+    }
+
+    public String getProject_id() {
+        return project_id;
+    }
+
+    public void setProject_id(String project_id) {
+        this.project_id = project_id;
+    }
 
     public Task(String title) {
 
         this.title = title;
         this.status = new ToDoStatus();
         this.color = defaultColor;
+    }
+
+    public Task() {
     }
 
     public Task(String title, TaskStatus ts) {
@@ -55,5 +86,14 @@ public class Task {
 
     public String getColorLabel() {
         return "#" + Integer.toHexString(color);
+    }
+
+    public String getStatusString() {
+        return statusString;
+    }
+
+    public void setStatusString(String statusString) {
+        this.status = TaskStatusFactory.getInstance().newStatus(statusString);
+        this.statusString = statusString;
     }
 }
