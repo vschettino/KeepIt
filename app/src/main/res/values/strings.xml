@@ -24,4 +24,6 @@
     <string name="label_task_name">Task Name</string>
     <string name="choose_the_color">Choose the color (tap to change)</string>
     <string name="server_auth_id">214047367889-2dhd358jjm7l3kgsigu50ls06nsmm0om.apps.googleusercontent.com</string>
+    <string name="githubsearchtext">Or <u>find it on github</u></string>
+    <string name="project_name">Project Name</string>
 </resources>

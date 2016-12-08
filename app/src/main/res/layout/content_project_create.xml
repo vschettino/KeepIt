@@ -28,12 +28,19 @@
             android:id="@+id/txtProject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Project Name" />
+            android:text="@string/project_name" />
 
         <EditText
             android:id="@+id/edtProject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/gitHubSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="25dp"
+            android:text="@string/githubsearchtext" />
 
     </LinearLayout>
 
