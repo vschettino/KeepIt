@@ -1,15 +1,25 @@
 package com.rockinghorse.keepit.views;
 
 import android.app.Activity;
+import android.os.SystemClock;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.rockinghorse.keepit.R;
+import com.rockinghorse.keepit.models.Task;
+
+import java.util.DuplicateFormatFlagsException;
 
 /**
  * A fragment representing a single Project detail screen.
@@ -23,6 +33,7 @@ public class TaskDetailFragment extends Fragment {
      * represents.
      */
     public static final String ARG_ITEM_ID = "item_id";
+    public static final String ARG_TASK_TITLE = "task_title";
 
     /**
      * The dummy content this fragment is presenting.
@@ -44,21 +55,43 @@ public class TaskDetailFragment extends Fragment {
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
 
-            Activity activity = this.getActivity();
+            getTaskData(getArguments().getString(ARG_ITEM_ID));
+
+            TaskDetailActivity activity = (TaskDetailActivity) getActivity();
+
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
             if (appBarLayout != null) {
-                appBarLayout.setTitle("This task");
+                appBarLayout.setTitle(getArguments().getString(ARG_TASK_TITLE));
             }
         }
+    }
+
+    public void getTaskData(String id) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("tasks/" + id);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Task task = dataSnapshot.getValue(Task.class);
+                System.out.println(dataSnapshot.toString());
+                TaskDetailActivity activity = (TaskDetailActivity) getActivity();
+                if (task != null && activity != null) {
+                    activity.renderTaskData(task);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.task_detail, container, false);
-
-        ((TextView) rootView.findViewById(R.id.project_detail)).setText("This task details");
-
         return rootView;
     }
 }

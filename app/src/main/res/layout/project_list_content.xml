@@ -48,7 +48,7 @@
                     android:layout_height="30dp"
                     android:gravity="end"
                     android:textAlignment="viewEnd"
-                    app:srcCompat="@drawable/ic_action_archive" />
+                    app:srcCompat="@mipmap/ic_action_delete" />
             </LinearLayout>
 
             <View

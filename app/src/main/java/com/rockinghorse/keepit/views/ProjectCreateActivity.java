@@ -63,8 +63,8 @@ public class ProjectCreateActivity extends AppCompatActivity {
             public void onClick(View view) {
                 final EditText edittext = new EditText(ProjectCreateActivity.this);
                 AlertDialog.Builder alert = new AlertDialog.Builder(ProjectCreateActivity.this)
-                        .setTitle("Informe seu username no github")
-                        .setPositiveButton("Buscar", new DialogInterface.OnClickListener() {
+                        .setTitle("Type your github username")
+                        .setPositiveButton("Search", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 String githubAccount = edittext.getText().toString();
                                 Log.i("accouNT", "acc " + githubAccount);

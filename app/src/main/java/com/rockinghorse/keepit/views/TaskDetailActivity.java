@@ -2,6 +2,7 @@ package com.rockinghorse.keepit.views;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
@@ -9,8 +10,12 @@ import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.rockinghorse.keepit.R;
+import com.rockinghorse.keepit.models.Task;
 
 /**
  * An activity representing a single Project detail screen. This
@@ -30,8 +35,7 @@ public class TaskDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Delete Task Action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                handleDeleteTask(getIntent().getStringExtra(TaskDetailFragment.ARG_ITEM_ID));
             }
         });
 
@@ -56,6 +60,10 @@ public class TaskDetailActivity extends AppCompatActivity {
             Bundle arguments = new Bundle();
             arguments.putString(TaskDetailFragment.ARG_ITEM_ID,
                     getIntent().getStringExtra(TaskDetailFragment.ARG_ITEM_ID));
+
+            arguments.putString(TaskDetailFragment.ARG_TASK_TITLE,
+                    getIntent().getStringExtra(TaskDetailFragment.ARG_TASK_TITLE));
+
             TaskDetailFragment fragment = new TaskDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
@@ -80,5 +88,22 @@ public class TaskDetailActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void renderTaskData(Task task) {
+        System.out.println(task.toMap().toString());
+
+        CollapsingToolbarLayout tbLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        tbLayout.setBackgroundColor(task.getColor());
+        ((TextView) findViewById(R.id.task_date)).setText("Due date: " + task.getDate());
+        ((TextView) findViewById(R.id.task_status)).setText("Status: " + task.getStatusString());
+        ((TextView) findViewById(R.id.task_info)).setText("Info: " + task.getInfo());
+    }
+
+    public void handleDeleteTask(String id) {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("tasks");
+        ref.child(id).removeValue();
+        this.finish();
     }
 }

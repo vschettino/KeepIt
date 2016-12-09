@@ -15,6 +15,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SearchView;
 
 import com.rockinghorse.keepit.R;
 import com.rockinghorse.keepit.presenters.TaskPresenter;
@@ -50,9 +51,10 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
-        if(getSupportActionBar() != null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
         projectId = getIntent().getExtras().getString(ProjectListActivity.ARG_PROJECT_ID);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -61,7 +63,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Context context = view.getContext();
+
+
                 Intent intent = new Intent(context, TaskCreateActivity.class);
+                intent.putExtra(ProjectListActivity.ARG_PROJECT_ID, projectId);
+
                 context.startActivity(intent);
             }
         });
@@ -69,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
             onBackPressed();
             return true;
         }
@@ -95,7 +101,9 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return TaskFragment.newInstance(position, getPageTitle(position), projectId);
+            final TaskFragment fragment = TaskFragment.newInstance(position, getPageTitle(position), projectId);
+
+            return fragment;
         }
 
         @Override

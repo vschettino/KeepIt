@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -15,19 +14,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rockinghorse.keepit.R;
-import com.rockinghorse.keepit.models.DoingStatus;
-import com.rockinghorse.keepit.models.DoneStatus;
-import com.rockinghorse.keepit.models.Project;
 import com.rockinghorse.keepit.models.Task;
-import com.rockinghorse.keepit.models.TaskStatus;
-import com.rockinghorse.keepit.models.ToDoStatus;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,12 +59,14 @@ public class TaskFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View rootView = inflater.inflate(R.layout.task_fragment, container, false);
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.task_list);
         assert recyclerView != null;
-        fetchProjects();
         setupRecyclerView(recyclerView);
+        fetchTasks();
+
         return rootView;
     }
 
@@ -79,16 +74,18 @@ public class TaskFragment extends Fragment {
         recyclerView.setAdapter(new TaskFragment.SimpleItemRecyclerViewAdapter(mTasks));
     }
 
-    private void fetchProjects() {
+    private void fetchTasks() {
         DatabaseReference ref = database.getReference("tasks");
-        ref.orderByChild("project_id").equalTo(getArguments().getString(ProjectListActivity.ARG_PROJECT_ID)).addValueEventListener(new ValueEventListener() {
+        ref.orderByChild("project_id").equalTo(getArguments().getString(ProjectListActivity.ARG_PROJECT_ID));
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Task> td = new HashMap<>();
                 for (DataSnapshot jobSnapshot : dataSnapshot.getChildren()) {
                     Task t = jobSnapshot.getValue(Task.class);
-                    if (t.getStatus().getLabel() == getArguments().getString(ARG_FRAGMENT_TITLE))
+                    if (t.getStatus().getLabel().equals(getArguments().getString(ARG_FRAGMENT_TITLE))) {
                         td.put(jobSnapshot.getKey(), t);
+                    }
                 }
                 mTasks.clear();
                 mTasks.addAll(new ArrayList<>(td.values()));
@@ -97,6 +94,7 @@ public class TaskFragment extends Fragment {
                     Log.d("firebase", t.getStatus().getActionText());
                 }
             }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -136,6 +134,8 @@ public class TaskFragment extends Fragment {
                     Context context = v.getContext();
                     Intent intent = new Intent(context, TaskDetailActivity.class);
                     intent.putExtra(ARG_TASK_TITLE, holder.mItem.getLabel());
+                    intent.putExtra(TaskDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+
 
                     context.startActivity(intent);
                 }
@@ -183,7 +183,7 @@ public class TaskFragment extends Fragment {
         t.gotoDefaultNextStatus();
         Log.d("firebase", "go to " + t.getStatus().getLabel());
 
-        DatabaseReference ref = database.getReference("tasks/\"" + t.getId() + "\"");
+        DatabaseReference ref = database.getReference("tasks/" + t.getId());
         ref.child("statusString").setValue(t.getStatusString());
     }
 }

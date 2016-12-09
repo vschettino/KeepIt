@@ -55,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="51dp"
                 android:onClick="showDateDialog"
-                android:text="22/10/2016" />
+                android:text="12/09/2016" />
 
 
             <TextView
@@ -70,7 +70,9 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:onClick="showColorDialog"
-                app:srcCompat="@drawable/color_picker_circle" />
+                android:tint="#2196f3"
+                app:srcCompat="@mipmap/ic_color_picker"
+                />
 
             <TextView
                 android:id="@+id/label_aditional_info"

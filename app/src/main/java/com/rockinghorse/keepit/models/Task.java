@@ -7,6 +7,9 @@ import java.util.Map;
 public class Task {
     public String id;
     public String title;
+    public String date;
+    public String info;
+
     private TaskStatus status;
     private String statusString;
     public int color;
@@ -21,15 +24,28 @@ public class Task {
         this.defaultColor = defaultColor;
     }
 
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public TaskStatus getStatus() {
         if (status == null)
             this.status = TaskStatusFactory.getInstance().newStatus(statusString);
         return status;
     }
 
-    public void setStatus(TaskStatus status) {
-//        this.status = status;
-    }
 
     public String getProject_id() {
         return project_id;
@@ -57,11 +73,16 @@ public class Task {
 
     }
 
-    public Task(String title, TaskStatus ts, int color) {
 
+    public Task(String id, String title, String date, int color, String info, String project_id) {
+        this.project_id = project_id;
         this.title = title;
-        this.status = ts;
-        this.color = color;
+        this.id = id;
+        this.date = date;
+        this.info = info;
+        this.color =  color;
+        ToDoStatus status = new ToDoStatus();
+        this.statusString = status.getLabel();
     }
 
     public String getTitle() {
@@ -136,6 +157,8 @@ public class Task {
         result.put("id", getId());
         result.put("title", getTitle());
         result.put("statusString", getStatusString());
+        result.put("date", getDate());
+        result.put("info", getInfo());
         result.put("color", getColor());
         result.put("project_id", getProject_id());
         return result;

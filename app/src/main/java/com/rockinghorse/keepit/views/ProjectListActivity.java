@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -68,6 +69,7 @@ public class ProjectListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Context context = view.getContext();
                 Intent intent = new Intent(context, ProjectCreateActivity.class);
                 intent.putExtra(LoginActivity.RC_ACCOUNT_ID, getIntent().getExtras().getString(LoginActivity.RC_ACCOUNT_ID));
@@ -204,6 +206,14 @@ public class ProjectListActivity extends AppCompatActivity {
                     }
                 }
             });
+
+            ImageView image = (ImageView) holder.mView.findViewById(R.id.imageView);
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteProject(holder.mItem.getId());
+                }
+            });
         }
 
         @Override
@@ -229,5 +239,11 @@ public class ProjectListActivity extends AppCompatActivity {
                 return super.toString() + " '" + mContentView.getText() + "'";
             }
         }
+    }
+
+    private void deleteProject(String key){
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("projects");
+        ref.child(key).removeValue();
     }
 }
