@@ -76,8 +76,8 @@ public class TaskFragment extends Fragment {
 
     private void fetchTasks() {
         DatabaseReference ref = database.getReference("tasks");
-        ref.orderByChild("project_id").equalTo(getArguments().getString(ProjectListActivity.ARG_PROJECT_ID));
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.orderByChild("project_id").equalTo(getArguments().getString(ProjectListActivity.ARG_PROJECT_ID)).
+        addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, Task> td = new HashMap<>();
